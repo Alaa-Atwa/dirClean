@@ -6,7 +6,8 @@ automate the following steps:
 
 ## How 
 by searching for files by its extensions and move them inside hidden
-directories.
+directories, help focusing on one type of files like videos (.mp4,..)
+
 
 ## Updates:
 
