@@ -1,16 +1,19 @@
 #!/bin/bash
 
 function hideExtra(){
-    read -p "extension of file to hide .html, .txt ..." more
+    read -p "Extensions of files to hide speated by space[html txt ...]: " more
     if [[ ! -d .extra ]]; then 
       mkdir .extra
     fi
-    mv *."$more" .extra/
+
+    for i in $more; do
+      mv *."$i" .extra/
+    done
 }
 
 
 # move subtitles to .subs 
-read -p "what is the extension?[srt, vtt, ...]: "  ext
+read -p "what is the subtitle extension? [srt, vtt, ...]: "  ext
 
 if [[ ! -d .subs ]]; then
   mkdir ./.subs 
@@ -19,18 +22,11 @@ fi
 mv *.$ext .subs/
 
 # hide extra files 
-read -ep "Do you want to hide any .html, .txt ... files [y|n]: " ans
+read -ep "Do you want to hide any extra files [y|n]: " ans
 
 case $ans in 
   y|Y) 
-    while [[ true ]]; do
-      read -ep "Do you want to hide any extra files[y]: " replay
-      if [[ "$replay" == 'y' ]]; then
-        hideExtra
-      else 
-        break
-      fi
-    done
+    hideExtra
     ;;
   n|N)
     echo "Ok!, whatever !"
