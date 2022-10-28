@@ -1,0 +1,45 @@
+#!/bin/bash
+
+function hideExtra(){
+    read -p "extension of file to hide .html, .txt ..." more
+    if [[ ! -d .extra ]]; then 
+      mkdir .extra
+    fi
+    mv *."$more" .extra/
+}
+
+
+# move subtitles to .subs 
+read -p "what is the extension?[srt, vtt, ...]: "  ext
+
+if [[ ! -d .subs ]]; then
+  mkdir ./.subs 
+fi
+
+mv *.$ext .subs/
+
+# hide extra files 
+read -ep "Do you want to hide any .html, .txt ... files [y|n]: " ans
+
+case $ans in 
+  y|Y) 
+    while [[ true ]]; do
+      read -ep "Do you want to hide any extra files[y]: " replay
+      if [[ "$replay" == 'y' ]]; then
+        hideExtra
+      else 
+        break
+      fi
+    done
+    ;;
+  n|N)
+    echo "Ok!, whatever !"
+    ;;
+  *)
+    echo "Enter A Valid Answer Please !"
+esac
+
+
+
+
+    
