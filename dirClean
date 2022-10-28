@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#functions 
 function hideExtra(){
     read -p "Extensions of files to hide speated by space[html txt ...]: " more
     if [[ ! -d .extra ]]; then 
